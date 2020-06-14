@@ -1,0 +1,28 @@
+#root{
+    width: 100%;
+    height: 100%;
+}
+
+#signinModal{
+    width: 600px;
+    height: 300px;
+    margin: 200px auto; 
+    text-align: center;
+}
+
+.MuiPaper-root{
+    width: 100%;
+    height: 100%;
+}
+
+#signinForm{
+    padding: 8%;
+}
+
+.MuiFormControl-root{
+    width: 350px; 
+}
+
+#formButtonGroup{
+    margin-top: 50px;
+}

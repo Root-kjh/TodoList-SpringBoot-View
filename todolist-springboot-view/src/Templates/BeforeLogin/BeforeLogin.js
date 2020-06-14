@@ -1,8 +1,9 @@
 import React from 'react';
 import { SigninModal } from '../../components';
+import '../../Resources/css/BeforeLogin.css';
 
 const BeforeLogin=()=>(
-    <div>
+    <div id="root">
         <SigninModal/>
     </div>
 )
