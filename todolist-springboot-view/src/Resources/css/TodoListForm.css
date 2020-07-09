@@ -1,0 +1,16 @@
+#TodoForm{
+    width: 600px;
+    height: 200px;
+    margin: 0 auto; 
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#TodoForm form{
+    padding: 25px;
+}
+
+#TodoForm button{
+    margin-top: 20px;
+    float: right;
+}

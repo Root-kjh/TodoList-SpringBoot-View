@@ -1,0 +1,15 @@
+#userEditButton{
+    height: 300px;
+    float: right;
+    margin-right: 50px;
+}
+
+#userEditMenu{
+    width: 0;
+    height: 0;
+}
+
+#simple-menu{
+    width: 200px;
+    height: 250px;
+} 

@@ -1,0 +1,24 @@
+ .todo {
+    margin: 0 auto !important;
+    margin-top: 20px !important;
+    width: 700px;
+}
+
+.deleteIcon{
+    float :right;
+    width: 25px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.deleteIcon:hover{
+    cursor: pointer;
+}
+
+.todo h2 {
+    padding: 20px;
+}
+
+.todo p {
+    padding: 10px;
+} 

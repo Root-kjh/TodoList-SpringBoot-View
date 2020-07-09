@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { changeForm } from '../../store/modules/Form';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+
 const SignupForm = () => {
     const dispatch = useDispatch();
 
@@ -11,24 +12,48 @@ const SignupForm = () => {
         dispatch(changeForm('SigninForm'))
     }
 
+    const passwordRetryCheck = () => {
+        return document.getElementsByName("password")[0].value===
+        document.getElementsByName("password")[1].value
+    }
+
     const signup = () => {
-        axios.post('localhost:8080')
+        if (passwordRetryCheck())
+            axios.post('http://localhost:8080/todolist/auth/signup',{
+                userName : document.getElementsByName("userName")[0].value,
+                nickName : document.getElementsByName("nickName")[0].value,
+                password : document.getElementsByName("password")[0].value
+            }).then(() => {
+                alert("회원가입 성공");
+                dispatch(changeForm('SigninForm'));
+            }).catch(error => {
+                console.log(error);
+                if (error.response.status===406)
+                    alert("이미 존재하는 유저");
+                else if (error.response.status===405)
+                    alert("좋지 못한 입력값");
+            });
+        else{
+            alert("패스워드가 맞지않음");
+        }
     }
 
     return (
         <form id="signupForm">
-            <TextField label="ID"/>
-            <TextField label="NickName"/>
+            <TextField label="ID" name="userName"/>
+            <TextField label="NickName" name="nickName"/>
             <TextField 
                     label="Password"
                     type="password"
+                    name="password"
                     autoComplete="current-password"/>
             <TextField 
                     label="Password Retry"
                     type="password"
+                    name="password"
                     autoComplete="current-password"/>
             <div id="formButtonGroup">
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={ signup }>
                 Signup
                 </Button>                  
                 <Button variant="contained" 

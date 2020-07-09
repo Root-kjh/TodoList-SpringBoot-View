@@ -8,7 +8,7 @@ function App() {
   const jwt = useSelector(state => state.jwt, []);
   return (
     <div className="App">
-      { jwt==="null"? <AfterLogin/> : <BeforeLogin/>}
+      { jwt? <AfterLogin/> : <BeforeLogin/>}
     </div>
   );
 }
