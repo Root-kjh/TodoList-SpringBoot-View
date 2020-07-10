@@ -22,3 +22,18 @@
 .todo p {
     padding: 10px;
 } 
+
+#todoArea h2:hover, #todoArea p:hover {
+    cursor: pointer;
+}
+
+#todoEditBox input[type="text"] {
+    width: 300px;
+    height: 30px;
+}
+
+#todoEditBox textarea {
+    margin-left: 10px;
+    width: 500px;
+    height: 50px;
+}
