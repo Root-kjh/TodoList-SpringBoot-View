@@ -19,7 +19,7 @@ const SignupForm = () => {
 
     const signup = () => {
         if (passwordRetryCheck())
-            axios.post('http://localhost:8080/todolist/auth/signup',{
+            axios.post('http://todo-list.kro.kr:8080/todolist/auth/signup',{
                 userName : document.getElementsByName("userName")[0].value,
                 nickName : document.getElementsByName("nickName")[0].value,
                 password : document.getElementsByName("password")[0].value

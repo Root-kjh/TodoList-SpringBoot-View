@@ -25,7 +25,7 @@ const UserEditButton = () => {
         const password = prompt("패스워드를 입력해주세요.");
         bodyFormData.set('password',password);
 
-        axios.post('http://localhost:8080/todolist/user/withdraw',bodyFormData,{
+        axios.post('http://todo-list.kro.kr:8080/todolist/user/withdraw',bodyFormData,{
             headers: {
                 "X-AUTH-TOKEN": jwt
             }

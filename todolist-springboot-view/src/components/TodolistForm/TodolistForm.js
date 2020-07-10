@@ -14,7 +14,7 @@ const TodolistForm = (props) => {
     const jwt = useSelector(state => state.jwt, []);
     
     const addTodo = () => {
-        axios.post('http://localhost:8080/todolist/todo/insert',{
+        axios.post('http://todo-list.kro.kr:8080/todolist/todo/insert',{
             title : document.getElementsByName("title")[0].value,
             context : document.getElementsByName("context")[0].value
         },{

@@ -18,7 +18,7 @@ const TodoBox = (props) => {
     const [isContextFocus, setIsContextFocus] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const deleteTodo = () => {
-        axios.get('http://localhost:8080/todolist/todo/delete?todoIdx='+props.idx,{
+        axios.get('http://todo-list.kro.kr:8080/todolist/todo/delete?todoIdx='+props.idx,{
             headers : {
                 "X-AUTH-TOKEN": jwt
             }
@@ -37,7 +37,7 @@ const TodoBox = (props) => {
     }
 
     const editTodo = () => {
-        axios.post('http://localhost:8080/todolist/todo/update',{
+        axios.post('http://todo-list.kro.kr:8080/todolist/todo/update',{
             idx: props.idx,
             newTitle: title,
             newContext: context

@@ -15,7 +15,7 @@ const TodolistModal=()=>{
     const [todoEventFlag, setTodoEventFlag] = useState(false);
 
     const getTodoList = async() => {
-        const response = await axios.get('http://localhost:8080/todolist/todo/show',{
+        const response = await axios.get('http://todo-list.kro.kr:8080/todolist/todo/show',{
             headers:{
                 "X-AUTH-TOKEN": jwt
             }

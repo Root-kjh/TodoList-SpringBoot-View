@@ -17,7 +17,7 @@ const SigninForm = () => {
     const signin = () => {
         const userName =  document.getElementsByName("userName")[0].value;
         const password = document.getElementsByName("password")[0].value;
-        axios.post('http://localhost:8080/todolist/auth/signin',{
+        axios.post('http://todo-list.kro.kr:8080/todolist/auth/signin',{
             userName : userName,
             password : password
         },{
@@ -26,7 +26,7 @@ const SigninForm = () => {
             }
         }).then(response => {
             const jwt = response.data;
-            axios.get('http://localhost:8080/todolist/user/get_user_info',{
+            axios.get('http://todo-list.kro.kr:8080/todolist/user/get_user_info',{
                 headers:{
                     "X-AUTH-TOKEN": jwt
                 }

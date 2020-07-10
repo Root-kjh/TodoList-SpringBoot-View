@@ -30,7 +30,7 @@ const ProfileEditModal = props => {
         if (passwordRetryCheck) {
             var bodyFormData = new FormData();
             bodyFormData.set('newPassword',document.getElementsByName("newPassword")[0].value);
-            axios.post('http://localhost:8080/todolist/user/modify_password',bodyFormData,{
+            axios.post('http://todo-list.kro.kr:8080/todolist/user/modify_password',bodyFormData,{
                 headers:{
                     "X-AUTH-TOKEN": jwt
                 }
@@ -49,7 +49,7 @@ const ProfileEditModal = props => {
     const updateUserInfo = () => {
         const newUserName = document.getElementsByName("userName")[0].value;
         const newNickName = document.getElementsByName("nickName")[0].value
-        axios.post('http://localhost:8080/todolist/user/update_user_info',{
+        axios.post('http://todo-list.kro.kr:8080/todolist/user/update_user_info',{
             newUserName: newUserName,
             newNickName: newNickName
         },{
