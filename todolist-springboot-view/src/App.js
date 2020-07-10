@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 function App() {
   const jwt = useSelector(state => state.jwt, []);
   return (
-    <title>todolist-springboot</title>
     <div className="App">
+    <title>todolist-springboot</title>
       { jwt? <AfterLogin/> : <BeforeLogin/>}
     </div>
   );
