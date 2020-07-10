@@ -7,15 +7,17 @@ import { drop_jwt } from '../../store/modules/JWT';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import ProfileEditModal from '../ProfileEditModal/ProfileEditModal';
 
-const UserEditButton = props => {
+const UserEditButton = () => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState(null);
     const jwt = useSelector(state => state.jwt, []);
-
+    const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
+    const nickName = useSelector(state => state.userInfo, []).nickName;
     const logout = () => {
         dispatch(drop_jwt());
-        setAnchorEl(null);
+        handleClose();
     }
 
     const withdraw = () => {
@@ -44,6 +46,11 @@ const UserEditButton = props => {
         })
     }
 
+    const openProfileModal = () => {
+        setProfileModalIsOpen(true);
+        handleClose();
+    }
+
     const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     };
@@ -54,7 +61,7 @@ const UserEditButton = props => {
     return(
         <div id="userEditButton">
         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            {props.nickName}님
+            {nickName}님
         </Button>
         <Menu
             id="simple-menu"
@@ -63,10 +70,11 @@ const UserEditButton = props => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
         >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={openProfileModal}>Profile</MenuItem>
             <MenuItem onClick={logout}>Logout</MenuItem>
             <MenuItem onClick={withdraw}>Withdraw</MenuItem>
         </Menu>
+        <ProfileEditModal profileModalIsOpen={profileModalIsOpen} setProfileModalIsOpen={setProfileModalIsOpen}/>
         </div>
     )
 };

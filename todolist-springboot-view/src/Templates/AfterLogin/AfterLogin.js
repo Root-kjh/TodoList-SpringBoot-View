@@ -10,9 +10,7 @@ const AfterLogin=()=>{
     
     return (
         <div id="root">
-            
-        {console.log(nickName)}
-            <UserEditButton nickName={nickName} />
+            <UserEditButton />
             <div id="todoArea">
                 <TodolistModal/>
             </div>

@@ -1,0 +1,23 @@
+#profileModal{
+    width: 400px;
+    height: 500px;
+    border: none;
+    position: fixed;
+    margin: 0 auto;
+    margin-top: 200px;
+    padding: 25px;
+}
+
+#profileModal .MuiTextField-root {
+    margin-bottom: 20px;
+    color: aliceblue !important;
+}
+
+#profileModal .MuiInputBase-root, #profileModal .MuiFormLabel-root, #profileModal .MuiFormLabel-root:before, #profileModal .MuiInput-underline:before {
+    color: aliceblue !important;
+    border-color: aliceblue;
+}
+
+#profileModal button{
+    margin-left: 30px;
+}
