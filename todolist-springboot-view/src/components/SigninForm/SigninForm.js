@@ -25,22 +25,18 @@ const SigninForm = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         }).then(response => {
-            const jwt = response.data;
-            axios.get('http://todo-list.kro.kr:8080/todolist/user/get_user_info',{
-                headers:{
-                    "X-AUTH-TOKEN": jwt
-                }
-            }).then(res => {
-                const userName = res.data.userName;
-                const nickName = res.data.nickName;
-                dispatch(set_userinfo(userName,nickName));
-                dispatch(change_jwt(jwt));
-            }).catch(error => console.log(error));
+            const jwt = response.data.jwt;
+            const idx = response.data.userId;
+            const userName = response.data.userName;
+            const nickName = response.data.nickName;
+            dispatch(set_userinfo(idx, userName,nickName));
+            dispatch(change_jwt(jwt));
         }).catch(error => {
             try{
-                if (error.response.status===405)
+                const errorMessage = error.response.data.Message
+                if (errorMessage==="Request Data Invalid")
                     alert("좋지 못한 입력값");
-                else if (error.response.status===403)
+                else if (errorMessage==="Login Failed")
                     alert("아이디 혹은 패스워드가 틀림");
             } catch{
                 console.log(error);

@@ -27,10 +27,10 @@ const SignupForm = () => {
                 alert("회원가입 성공");
                 dispatch(changeForm('SigninForm'));
             }).catch(error => {
-                console.log(error);
-                if (error.response.status===406)
+                const errorMessage = error.response.data.Message
+                if (errorMessage==="User Exist")
                     alert("이미 존재하는 유저");
-                else if (error.response.status===405)
+                else if (errorMessage==="Request Data Invalid")
                     alert("좋지 못한 입력값");
             });
         else{

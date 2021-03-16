@@ -3,7 +3,7 @@ const SET_USERINFO = 'USERINFO/SET_USERINFO';
 const DROP_USERINFO = 'USERINFO/DROP_USERINFO'
 
 export const change_userinfo = nickName => ({type: CHANGE_USERINFO, nickName });
-export const set_userinfo = (userName, nickName) => ({type: SET_USERINFO, userName, nickName});
+export const set_userinfo = (idx, userName, nickName) => ({type: SET_USERINFO, idx, userName, nickName});
 export const drop_userinfo = () => ({type: DROP_USERINFO});
 
 
@@ -18,6 +18,7 @@ export default function userInfo(state = initialState, action) {
             };    
         case SET_USERINFO:
             return {
+                idx: action.idx,
                 userName : action.userName,
                 nickName : action.nickName
             }

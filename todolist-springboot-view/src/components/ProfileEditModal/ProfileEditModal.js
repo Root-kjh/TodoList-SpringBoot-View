@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { change_jwt } from '../../store/modules/JWT';
-import { set_userinfo } from '../../store/modules/UserInfo';
+import { change_userinfo } from '../../store/modules/UserInfo';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
@@ -28,9 +28,9 @@ const ProfileEditModal = props => {
 
     const changePassword = () => {
         if (passwordRetryCheck) {
-            var bodyFormData = new FormData();
-            bodyFormData.set('newPassword',document.getElementsByName("newPassword")[0].value);
-            axios.post('http://todo-list.kro.kr:8080/todolist/user/modify_password',bodyFormData,{
+            axios.patch('http://todo-list.kro.kr:8080/todolist/user/'+userInfo.idx,{
+                password: document.getElementsByName("newPassword")[0].value
+            },{
                 headers:{
                     "X-AUTH-TOKEN": jwt
                 }
@@ -47,18 +47,15 @@ const ProfileEditModal = props => {
     }
 
     const updateUserInfo = () => {
-        const newUserName = document.getElementsByName("userName")[0].value;
         const newNickName = document.getElementsByName("nickName")[0].value
-        axios.post('http://todo-list.kro.kr:8080/todolist/user/update_user_info',{
-            newUserName: newUserName,
-            newNickName: newNickName
+        axios.put('http://todo-list.kro.kr:8080/todolist/user/'+userInfo.idx,{
+            nickName: newNickName
         },{
             headers:{
                 "X-AUTH-TOKEN": jwt
             }
         }).then(response => {
-            dispatch(set_userinfo(newUserName,newNickName));
-            dispatch(change_jwt(response.data));
+            dispatch(change_userinfo(newNickName));
             alert("회원정보 수정 완료");
         }).catch(error => {
             try {
@@ -83,7 +80,7 @@ const ProfileEditModal = props => {
         aria-describedby="simple-modal-description"
       >
           <form>
-            <TextField id="standard-basic" label="UserName" onChange={e => setUserName(e.target.value)} value={userName} name="userName" />
+            <TextField id="standard-basic" label="UserName" value={userName} name="userName" InputProps={{readOnly: true,}} />
             <TextField id="standard-basic" label="NickName" onChange={e => setNickName(e.target.value)} value={nickName} name="nickName" />
             <TextField
             id="standard-password-input"

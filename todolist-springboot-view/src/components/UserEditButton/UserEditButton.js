@@ -15,35 +15,49 @@ const UserEditButton = () => {
     const jwt = useSelector(state => state.jwt, []);
     const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
     const nickName = useSelector(state => state.userInfo, []).nickName;
+    const userInfo = useSelector(state => state.userInfo, [])
     const logout = () => {
         dispatch(drop_jwt());
         handleClose();
     }
 
     const withdraw = () => {
-        var bodyFormData = new FormData();
         const password = prompt("패스워드를 입력해주세요.");
-        bodyFormData.set('password',password);
 
-        axios.post('http://todo-list.kro.kr:8080/todolist/user/withdraw',bodyFormData,{
-            headers: {
-                "X-AUTH-TOKEN": jwt
+        axios.post('http://todo-list.kro.kr:8080/todolist/auth/signin',{
+            userName : userInfo.userName,
+            password : password
+        },{
+            headers:{
+                "Access-Control-Allow-Origin": "*"
             }
-        })
-        .then(() => {
-            alert("회원탈퇴 완료");
-            logout();
-        })
-        .catch(error => {
-            try{
+        }).then(() => {
+            axios.delete('http://todo-list.kro.kr:8080/todolist/user/'+userInfo.idx,{
+                headers: {
+                    "X-AUTH-TOKEN": jwt
+                }
+            })
+            .then(() => {
+                alert("회원탈퇴 완료");
+                logout();
+            })
+            .catch(error => {
                 if (error.response.status===403){
                     alert("비정상적 접근 감지");
                     dispatch(drop_jwt());
                 }
-            } catch {
+            })
+        }).catch(error => {
+            try{
+                const errorMessage = error.response.data.Message
+                if (errorMessage==="Request Data Invalid")
+                    alert("좋지 못한 입력값");
+                else if (errorMessage==="Login Failed")
+                    alert("패스워드 입력 오류");
+            } catch{
                 console.log(error);
             }
-        })
+        });
     }
 
     const openProfileModal = () => {
