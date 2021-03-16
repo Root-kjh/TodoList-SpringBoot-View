@@ -1,4 +1,5 @@
 {
+  "homepage": "http://kjh-projects.kro.kr/todo-list/",
   "name": "todolist-springboot-view",
   "version": "0.1.0",
   "private": true,

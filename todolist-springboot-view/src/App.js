@@ -8,7 +8,6 @@ function App() {
   const jwt = useSelector(state => state.jwt, []);
   return (
     <div className="App">
-    <title>todolist-springboot</title>
       { jwt? <AfterLogin/> : <BeforeLogin/>}
     </div>
   );
